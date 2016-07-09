@@ -104,7 +104,7 @@ public class EmailPasswordActivity extends BaseActivity implements
 
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mPasswordField.setError("Required.");
+            mPasswordField.setError(getString(R.string.error_required));
             valid = false;
         } else {
             mPasswordField.setError(null);
