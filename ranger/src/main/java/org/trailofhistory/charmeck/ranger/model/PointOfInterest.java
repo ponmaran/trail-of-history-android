@@ -3,6 +3,11 @@ package org.trailofhistory.charmeck.ranger.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Trey Robinson on 3/8/16.
  */
@@ -99,4 +104,16 @@ public class PointOfInterest implements Parcelable {
             return new PointOfInterest[size];
         }
     };
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", uid);
+        result.put("name", name);
+        result.put("description", description);
+        result.put("latitude", latitude);
+        result.put("longitude", longitude);
+
+        return result;
+    }
 }

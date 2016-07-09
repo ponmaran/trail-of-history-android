@@ -13,6 +13,8 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
 
     private static String KEY_POI = "pointOfInterest";
 
+    private PointOfInterest pointOfInterest;
+
     private TextView nameField;
 
     public static Intent newInstance(Context context, PointOfInterest pointOfInterest){
@@ -37,8 +39,7 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
     }
 
     private void setPointOfInterest(PointOfInterest pointOfInterest){
-
+        this.pointOfInterest = pointOfInterest;
         nameField.setText(pointOfInterest.getName());
-
     }
 }

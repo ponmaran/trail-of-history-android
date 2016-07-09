@@ -11,12 +11,15 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
 import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
+
+import java.util.List;
 
 /**
  * Lists all points of interest currently on the trail of history
  */
-public class MainActivity extends AuthenticatedActivity {
+public class MainActivity extends AuthenticatedActivity implements PointOfInterestManager.PointOfInterestListCallback{
 
     private static final String TAG = "MainActivity";
 
@@ -39,6 +42,8 @@ public class MainActivity extends AuthenticatedActivity {
                 createPOI();
             }
         });
+
+        PointOfInterestManager.getInstance().getPointsofInterest(this);
     }
 
     @Override
@@ -73,4 +78,11 @@ public class MainActivity extends AuthenticatedActivity {
 
     }
 
+    @Override
+    public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
+        if(pointOfInterestList != null){
+            pointOfInterestList.toString();
+        }
+
+    }
 }

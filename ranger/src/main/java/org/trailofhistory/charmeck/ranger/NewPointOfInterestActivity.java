@@ -26,6 +26,12 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         return new Intent(context, NewPointOfInterestActivity.class);
     }
 
+    /**
+     * Used for editing POI
+     * @param context
+     * @param pointOfInterest
+     * @return
+     */
     public static Intent newInstance(Context context, PointOfInterest pointOfInterest) {
         return new Intent(context, NewPointOfInterestActivity.class);
     }
