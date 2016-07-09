@@ -20,7 +20,7 @@
             android:id="@+id/poiname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/app_name"
+            android:hint="@string/hint_name"
             android:paddingBottom="10dp" />
 
     </android.support.design.widget.TextInputLayout>
