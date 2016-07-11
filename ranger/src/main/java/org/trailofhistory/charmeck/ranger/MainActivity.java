@@ -99,10 +99,6 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
         startActivity(NewPointOfInterestActivity.newInstance(this));
     }
 
-    private void viewPOI(PointOfInterest pointOfInterest){
-
-    }
-
     @Override
     public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
         hideProgressDialog();

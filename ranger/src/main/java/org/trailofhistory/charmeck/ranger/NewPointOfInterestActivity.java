@@ -2,6 +2,7 @@ package org.trailofhistory.charmeck.ranger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,6 +17,8 @@ import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
 import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
 
 public class NewPointOfInterestActivity extends AppCompatActivity {
+
+    private static String KEY_POI = "pointOfInterest";
 
     private Button saveButton;
     private EditText nameField;
@@ -33,7 +36,10 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
      * @return
      */
     public static Intent newInstance(Context context, PointOfInterest pointOfInterest) {
-        return new Intent(context, NewPointOfInterestActivity.class);
+        Intent intent =  new Intent(context, NewPointOfInterestActivity.class);
+        intent.putExtra(KEY_POI, pointOfInterest);
+
+        return intent;
     }
 
     @Override
@@ -51,6 +57,11 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
                 validateAndSave();
             }
         });
+
+        PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
+        if(poi != null){
+            setPointOfInterest(poi);
+        }
     }
 
     private void validateAndSave(){
@@ -59,9 +70,12 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         }
     }
     private void save(){
-        PointOfInterest poi = new PointOfInterest();
-        poi.setName(nameField.getText().toString());
-        pointOfInterest = PointOfInterestManager.getInstance().savePOI(poi, new DatabaseReference.CompletionListener() {
+        if(pointOfInterest == null){
+            PointOfInterest poi = new PointOfInterest();
+        }
+
+        pointOfInterest.setName(nameField.getText().toString());
+        pointOfInterest = PointOfInterestManager.getInstance().savePOI(pointOfInterest, new DatabaseReference.CompletionListener() {
 
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -74,7 +88,6 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         });
     }
 
-
     private boolean validateForm(){
         boolean valid = true;
 
@@ -85,5 +98,11 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    private void setPointOfInterest(PointOfInterest pointOfInterest){
+        this.pointOfInterest = pointOfInterest;
+        nameField.setText(pointOfInterest.getName());
+    }
+
 
 }

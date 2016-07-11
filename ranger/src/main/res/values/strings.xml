@@ -13,6 +13,7 @@
     <string name="sign_out">Sign Out</string>
 
     <string name="action_sign_out">Sign Out</string>
+    <string name="action_edit">Edit</string>
 
     <string name="hint_name">Name</string>
     <string name="save">Save</string>

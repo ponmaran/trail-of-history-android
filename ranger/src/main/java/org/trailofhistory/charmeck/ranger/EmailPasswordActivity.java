@@ -83,12 +83,9 @@ public class EmailPasswordActivity extends BaseActivity implements
                             finish();
                         }
 
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END sign_in_with_email]
     }
 
     private boolean validateForm() {
@@ -112,7 +109,6 @@ public class EmailPasswordActivity extends BaseActivity implements
 
         return valid;
     }
-
 
     @Override
     public void onClick(View v) {

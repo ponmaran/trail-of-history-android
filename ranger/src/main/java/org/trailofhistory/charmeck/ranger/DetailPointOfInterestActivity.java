@@ -2,9 +2,11 @@ package org.trailofhistory.charmeck.ranger;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
@@ -36,6 +38,31 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
             setPointOfInterest(poi);
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.detail_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                edit();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void edit(){
+        if(pointOfInterest != null){
+            startActivity(NewPointOfInterestActivity.newInstance(this, pointOfInterest));
+        }
     }
 
     private void setPointOfInterest(PointOfInterest pointOfInterest){
