@@ -1,0 +1,111 @@
+package org.trailofhistory.charmeck.ranger;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.dgreenhalgh.android.simpleitemdecoration.linear.DividerItemDecoration;
+import com.google.firebase.auth.FirebaseAuth;
+
+import org.trailofhistory.charmeck.ranger.adapter.PointOfInterestAdapter;
+import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
+import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
+
+import java.util.List;
+
+/**
+ * Lists all points of interest currently on the trail of history
+ */
+public class MainActivity extends AuthenticatedActivity implements PointOfInterestManager.PointOfInterestListCallback{
+
+    private static final String TAG = "MainActivity";
+
+    private FloatingActionButton mFab;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private PointOfInterestAdapter mAdapter;
+
+    public static Intent newInstance(Context context){
+        return new Intent(context, MainActivity.class);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mRecyclerView = (RecyclerView) findViewById(R.id.poiList);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.simple_divider);
+
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPOI();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showProgressDialog();
+        PointOfInterestManager.getInstance().getPointsofInterest(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_sign_out:
+                signOut();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void signOut() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.signOut();
+    }
+
+    private void createPOI(){
+        startActivity(NewPointOfInterestActivity.newInstance(this));
+    }
+
+    @Override
+    public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
+        hideProgressDialog();
+        if(pointOfInterestList != null){
+            mAdapter = new PointOfInterestAdapter(pointOfInterestList);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+
+    }
+}
