@@ -7,48 +7,40 @@ import android.support.annotation.Nullable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.trailofhistory.charmeck.ranger.manager.AuthenticationManager;
+
 /**
  * Created by Trey Robinson on 7/9/16.
  */
-public class AuthenticatedActivity extends BaseActivity {
-
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+public class AuthenticatedActivity extends BaseActivity implements  FirebaseAuth.AuthStateListener{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user == null) {
-                    goToSignIn();
-                }
-            }
-        };
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        AuthenticationManager.getInstance().addAuthStateListener(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
+        AuthenticationManager.getInstance().removeAuthStateListener(this);
     }
 
     private void goToSignIn(){
         startActivity(EmailPasswordActivity.newInstance(this));
         finish();
     }
+
+    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user == null) {
+            goToSignIn();
+        }
+    }
+
 }

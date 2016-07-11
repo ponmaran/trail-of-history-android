@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * Created by Trey Robinson on 7/9/16.
- * Copyright 2016 MindMine LLC.
  */
 public class PointOfInterestManager {
 

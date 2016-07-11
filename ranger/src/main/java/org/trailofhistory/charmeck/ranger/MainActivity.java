@@ -3,7 +3,10 @@ package org.trailofhistory.charmeck.ranger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +14,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.trailofhistory.charmeck.ranger.adapter.PointOfInterestAdapter;
 import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
 import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
 
@@ -24,6 +28,9 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
     private static final String TAG = "MainActivity";
 
     private FloatingActionButton mFab;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private PointOfInterestAdapter mAdapter;
 
     public static Intent newInstance(Context context){
         return new Intent(context, MainActivity.class);
@@ -35,6 +42,12 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
         setContentView(R.layout.activity_main);
 
         mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mRecyclerView = (RecyclerView) findViewById(R.id.poiList);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +94,8 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
     @Override
     public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
         if(pointOfInterestList != null){
-            pointOfInterestList.toString();
+            mAdapter = new PointOfInterestAdapter(pointOfInterestList);
+            mRecyclerView.setAdapter(mAdapter);
         }
 
     }
