@@ -2,9 +2,11 @@ package org.trailofhistory.charmeck.ranger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.dgreenhalgh.android.simpleitemdecoration.linear.DividerItemDecoration;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.trailofhistory.charmeck.ranger.adapter.PointOfInterestAdapter;
@@ -47,7 +50,9 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.simple_divider);
 
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +61,13 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showProgressDialog();
         PointOfInterestManager.getInstance().getPointsofInterest(this);
     }
 
@@ -93,6 +105,7 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
 
     @Override
     public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
+        hideProgressDialog();
         if(pointOfInterestList != null){
             mAdapter = new PointOfInterestAdapter(pointOfInterestList);
             mRecyclerView.setAdapter(mAdapter);
