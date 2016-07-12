@@ -71,7 +71,7 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
     }
     private void save(){
         if(pointOfInterest == null){
-            PointOfInterest poi = new PointOfInterest();
+            pointOfInterest = new PointOfInterest();
         }
 
         pointOfInterest.setName(nameField.getText().toString());
