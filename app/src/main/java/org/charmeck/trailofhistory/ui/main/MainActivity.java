@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import java.util.ArrayList;
 import javax.inject.Inject;
@@ -21,7 +21,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public class MainActivity extends AppCompatActivity {
 
-  @Bind(R.id.recyclerView) RecyclerView recyclerView;
+  @BindView(R.id.recyclerView) RecyclerView recyclerView;
   PointOfInterestAdapter poiAdapter;
 
   @Inject TrailOfHistoryService tohService;

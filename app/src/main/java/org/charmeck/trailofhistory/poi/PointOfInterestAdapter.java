@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import java.util.List;
 import org.charmeck.trailofhistory.R;
@@ -21,8 +21,8 @@ public class PointOfInterestAdapter
 
   static class ViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.poiName) TextView name;
-    @Bind(R.id.poiDescription) TextView description;
+    @BindView(R.id.poiName) TextView name;
+    @BindView(R.id.poiDescription) TextView description;
 
     public ViewHolder(View itemView) {
       super(itemView);

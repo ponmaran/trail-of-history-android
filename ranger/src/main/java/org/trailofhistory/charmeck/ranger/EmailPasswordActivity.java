@@ -21,13 +21,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class EmailPasswordActivity extends BaseActivity implements
-        View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class EmailPasswordActivity extends BaseActivity {
 
     private static final String TAG = "EmailPassword";
 
-    private EditText mEmailField;
-    private EditText mPasswordField;
+    @BindView(R.id.field_email) EditText mEmailField;
+    @BindView(R.id.field_password) EditText mPasswordField;
 
     private FirebaseAuth mAuth;
 
@@ -44,16 +47,9 @@ public class EmailPasswordActivity extends BaseActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emailpassword);
-
-        mEmailField = (EditText) findViewById(R.id.field_email);
-        mPasswordField = (EditText) findViewById(R.id.field_password);
-
-        // Buttons
-        findViewById(R.id.email_sign_in_button).setOnClickListener(this);
+        ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
-
-
     }
 
     private void signIn(String email, String password) {
@@ -110,7 +106,7 @@ public class EmailPasswordActivity extends BaseActivity implements
         return valid;
     }
 
-    @Override
+    @OnClick(R.id.email_sign_in_button)
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.email_sign_in_button:

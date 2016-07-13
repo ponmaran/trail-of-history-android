@@ -3,7 +3,6 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     classpath 'me.tatarka:gradle-retrolambda:3.2.5'
   }
 }
@@ -40,7 +39,8 @@ dependencies {
   testCompile 'junit:junit:4.12'
   compile 'com.android.support:appcompat-v7:24.0.0'
   compile 'com.android.support:recyclerview-v7:24.0.0'
-  compile 'com.jakewharton:butterknife:7.0.1'
+  compile 'com.jakewharton:butterknife:8.2.0'
+  apt 'com.jakewharton:butterknife-compiler:8.2.0'
 
   compile 'com.jakewharton.timber:timber:4.0.1'
 
@@ -48,8 +48,8 @@ dependencies {
   compile 'io.reactivex:rxandroid:1.1.0'
   compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
-  compile 'com.google.dagger:dagger:2.2'
-  apt 'com.google.dagger:dagger-compiler:2.2'
+  compile 'com.google.dagger:dagger:2.5'
+  apt 'com.google.dagger:dagger-compiler:2.5'
   provided 'javax.annotation:jsr250-api:1.0'
 
   compile 'com.squareup.okhttp3:okhttp:3.2.0'
