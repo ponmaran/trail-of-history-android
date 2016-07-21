@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger.adapter;
+package org.charmeck.trailofhistory.ranger.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.trailofhistory.charmeck.ranger.DetailPointOfInterestActivity;
-import org.trailofhistory.charmeck.ranger.R;
-import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.ranger.DetailPointOfInterestActivity;
+import org.charmeck.trailofhistory.ranger.R;
+import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
 
 import java.util.List;
 

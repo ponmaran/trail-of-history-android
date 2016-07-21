@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 import org.junit.Test;
 

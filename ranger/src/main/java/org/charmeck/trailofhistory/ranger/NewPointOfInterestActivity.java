@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
-import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
-import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.ranger.manager.PointOfInterestManager;
+import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

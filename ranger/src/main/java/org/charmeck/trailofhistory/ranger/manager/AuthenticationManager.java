@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger.manager;
+package org.charmeck.trailofhistory.ranger.manager;
 
 import com.google.firebase.auth.FirebaseAuth;
 

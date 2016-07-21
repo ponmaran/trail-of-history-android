@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

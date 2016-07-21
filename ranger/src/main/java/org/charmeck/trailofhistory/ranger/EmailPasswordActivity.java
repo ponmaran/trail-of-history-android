@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 /**
  * Created by Trey Robinson on 7/7/16.
@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

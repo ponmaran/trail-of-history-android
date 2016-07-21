@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +15,9 @@ import android.view.View;
 import com.dgreenhalgh.android.simpleitemdecoration.linear.DividerItemDecoration;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.trailofhistory.charmeck.ranger.adapter.PointOfInterestAdapter;
-import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
-import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.ranger.adapter.PointOfInterestAdapter;
+import org.charmeck.trailofhistory.ranger.manager.PointOfInterestManager;
 
 import java.util.List;
 

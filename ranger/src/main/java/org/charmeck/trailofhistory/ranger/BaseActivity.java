@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
