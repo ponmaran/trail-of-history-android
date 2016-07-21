@@ -13,6 +13,9 @@ import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Trey Robinson on 7/10/16.
  */
@@ -26,13 +29,13 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
         // each data item is just a string in this case
 
 
-        private final TextView mTextView;
+        @BindView(R.id.poiName) TextView mTextView;
 
         private PointOfInterest pointOfInterest;
 
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView)v.findViewById(R.id.poiName);
+            ButterKnife.bind(this, v);
             v.setOnClickListener(this);
         }
 

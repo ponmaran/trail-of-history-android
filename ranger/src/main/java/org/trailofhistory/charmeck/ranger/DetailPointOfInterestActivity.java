@@ -11,13 +11,16 @@ import android.widget.TextView;
 
 import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailPointOfInterestActivity extends AppCompatActivity {
 
     private static String KEY_POI = "pointOfInterest";
 
     private PointOfInterest pointOfInterest;
 
-    private TextView nameField;
+    @BindView(R.id.nameField) TextView nameField;
 
     public static Intent newInstance(Context context, PointOfInterest pointOfInterest){
         Intent intent =  new Intent(context, DetailPointOfInterestActivity.class);
@@ -30,8 +33,7 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_point_of_interest);
-
-        nameField =  (TextView) findViewById(R.id.nameField);
+        ButterKnife.bind(this);
 
         PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
         if(poi != null){

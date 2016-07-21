@@ -2,12 +2,10 @@ package org.trailofhistory.charmeck.ranger;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseError;
@@ -16,12 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import org.trailofhistory.charmeck.ranger.manager.PointOfInterestManager;
 import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class NewPointOfInterestActivity extends AppCompatActivity {
 
     private static String KEY_POI = "pointOfInterest";
 
-    private Button saveButton;
-    private EditText nameField;
+    @BindView(R.id.poiname) EditText nameField;
 
     private PointOfInterest pointOfInterest;
 
@@ -46,21 +47,22 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_point_of_interest);
-
-        nameField = (EditText) findViewById(R.id.poiname);
-
-        saveButton = (Button) findViewById(R.id.saveButton);
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validateAndSave();
-            }
-        });
+        ButterKnife.bind(this);
 
         PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
         if(poi != null){
             setPointOfInterest(poi);
+        }
+    }
+
+    @OnClick(R.id.saveButton)
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.saveButton:
+                validateAndSave();
+                break;
+            default:
+                break;
         }
     }
 

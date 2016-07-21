@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +21,10 @@ import org.trailofhistory.charmeck.ranger.model.PointOfInterest;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Lists all points of interest currently on the trail of history
  */
@@ -30,8 +32,7 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
 
     private static final String TAG = "MainActivity";
 
-    private FloatingActionButton mFab;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.poiList) RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private PointOfInterestAdapter mAdapter;
 
@@ -43,9 +44,7 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mRecyclerView = (RecyclerView) findViewById(R.id.poiList);
+        ButterKnife.bind(this);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -53,14 +52,6 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
         Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.simple_divider);
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
-
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createPOI();
-            }
-        });
-
     }
 
     @Override
@@ -87,6 +78,17 @@ public class MainActivity extends AuthenticatedActivity implements PointOfIntere
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @OnClick(R.id.fab)
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                createPOI();
+                break;
+            default:
+                break;
         }
     }
 
