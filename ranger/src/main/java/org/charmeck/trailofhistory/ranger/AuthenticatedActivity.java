@@ -1,4 +1,4 @@
-package org.trailofhistory.charmeck.ranger;
+package org.charmeck.trailofhistory.ranger;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.trailofhistory.charmeck.ranger.manager.AuthenticationManager;
+import org.charmeck.trailofhistory.ranger.manager.AuthenticationManager;
 
 /**
  * Created by Trey Robinson on 7/9/16.
