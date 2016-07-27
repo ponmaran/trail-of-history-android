@@ -19,5 +19,6 @@
     <string name="save">Save</string>
 
     <string name="error_required">Required.</string>
+    <string name="remember_id_swtich">Remember Email</string>
 
 </resources>
