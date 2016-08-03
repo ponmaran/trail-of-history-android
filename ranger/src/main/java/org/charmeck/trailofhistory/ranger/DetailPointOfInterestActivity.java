@@ -2,8 +2,8 @@ package org.charmeck.trailofhistory.ranger;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,7 +25,6 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
     public static Intent newInstance(Context context, PointOfInterest pointOfInterest){
         Intent intent =  new Intent(context, DetailPointOfInterestActivity.class);
         intent.putExtra(KEY_POI, pointOfInterest);
-
         return intent;
     }
 
@@ -34,6 +33,8 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_point_of_interest);
         ButterKnife.bind(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
         if(poi != null){
@@ -63,6 +64,7 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
 
     private void edit(){
         if(pointOfInterest != null){
+
             startActivity(NewPointOfInterestActivity.newInstance(this, pointOfInterest));
         }
     }

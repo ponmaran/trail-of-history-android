@@ -49,6 +49,8 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_point_of_interest);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
         if(poi != null){
             setPointOfInterest(poi);
