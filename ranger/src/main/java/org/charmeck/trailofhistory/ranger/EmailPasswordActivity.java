@@ -51,6 +51,11 @@ public class EmailPasswordActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null) {
+            Log.d(TAG, "user is already logged in: " + mAuth.getCurrentUser().getEmail());
+            startActivity(MainActivity.newInstance(EmailPasswordActivity.this));
+            finish();
+        }
     }
 
     private void signIn(String email, String password) {
