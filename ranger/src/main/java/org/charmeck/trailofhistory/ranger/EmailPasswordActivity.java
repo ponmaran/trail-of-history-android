@@ -34,19 +34,13 @@ public class EmailPasswordActivity extends BaseActivity {
 
     private static final String TAG = "EmailPassword";
 
-    //Preferences
-    private static final String CLTPREFERENCES = "CLTPREFERENCES";
-    private static final String REMEMBER_ID = "remember_id";
-    private static final String STORED_USERNAME = "stored_username";
-    //End Preferences
-
     @BindView(R.id.field_email) EditText mEmailField;
     @BindView(R.id.field_password) EditText mPasswordField;
     @BindView(R.id.bool_remember_id) CheckBox mRememberId;
 
     private FirebaseAuth mAuth;
-    private SharedPreferences mSharedPreferences;
     private boolean mRememberIdValue;
+    private PreferenceSaver preferenceSaver;
 
     public static Intent newInstance(Context context){
         Intent intent =  new Intent(context, EmailPasswordActivity.class);
@@ -60,15 +54,15 @@ public class EmailPasswordActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSharedPreferences = getSharedPreferences(CLTPREFERENCES, MODE_PRIVATE);
-        mRememberIdValue = mSharedPreferences.getBoolean(REMEMBER_ID, false);
+        preferenceSaver = new SharedPreferencesSaver(getApplicationContext());
+        mRememberIdValue = preferenceSaver.isRememberId();
         setContentView(R.layout.activity_emailpassword);
         ButterKnife.bind(this);
 
         if (mRememberIdValue) {
             Log.d(TAG, "testing setting text and checkbox");
             mRememberId.setChecked(true);
-            mEmailField.setText(mSharedPreferences.getString(STORED_USERNAME, ""));
+            mEmailField.setText(preferenceSaver.getSavedUsername());
             mPasswordField.requestFocus();
         }
 
@@ -81,7 +75,7 @@ public class EmailPasswordActivity extends BaseActivity {
             return;
         }
 
-        storeCredentials(mSharedPreferences, email, mRememberId.isChecked());
+        preferenceSaver.storeCredentials(email, mRememberId.isChecked());
 
         showProgressDialog();
 
@@ -131,30 +125,6 @@ public class EmailPasswordActivity extends BaseActivity {
         return valid;
     }
 
-    /**
-     * This is used to store the credentials for the user.  This only stores the username and only
-     * if the rememeber Id option is valid.  Otherwise, it removes it from the shared preferences so
-     * in the event someone does turn on the switch, they do not get a previous stored value.
-     *
-     * @param sharedPreferences - This is the shared preferences for the application.  Intentionally
-     *                          passing in as a parameter for di in the future.
-     * @param email - The email of the user to be stored.
-     * @param rememberId - The boolean value of the checkbox so it can be stored for future use and
-     *                   to retrieve the email in the onCreate method.
-     */
-    private void storeCredentials(SharedPreferences sharedPreferences, String email, boolean rememberId) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        if(rememberId) {
-            Log.d(TAG, "storing username");
-            editor.putString(STORED_USERNAME, email).apply();
-            editor.putBoolean(REMEMBER_ID, true).apply();
-        }
-        else {
-            Log.d(TAG, "removing username");
-            editor.remove(STORED_USERNAME).apply();
-            editor.remove(REMEMBER_ID).apply();
-        }
-    }
 
     @OnClick(R.id.email_sign_in_button)
     public void onClick(View v) {
