@@ -75,8 +75,6 @@ public class EmailPasswordActivity extends BaseActivity {
             return;
         }
 
-        preferenceSaver.storeCredentials(email, mRememberId.isChecked());
-
         showProgressDialog();
 
         // [START sign_in_with_email]
@@ -94,6 +92,7 @@ public class EmailPasswordActivity extends BaseActivity {
                             Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
+                            preferenceSaver.storeCredentials(task.getResult().getUser().getEmail(), mRememberId.isChecked());
                             startActivity(MainActivity.newInstance(EmailPasswordActivity.this));
                             finish();
                         }
@@ -134,6 +133,14 @@ public class EmailPasswordActivity extends BaseActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+    //This will remove the stored email instantly when the checkbox is changed.
+    @OnClick(R.id.bool_remember_id)
+    public void onCheckedChanged(View v) {
+        if(!((CheckBox)v).isChecked()) {
+            preferenceSaver.storeCredentials("", mRememberId.isChecked());
         }
     }
 }
