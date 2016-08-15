@@ -7,12 +7,15 @@ package org.charmeck.trailofhistory.ranger;
  */
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.IntentCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class EmailPasswordActivity extends BaseActivity {
@@ -32,8 +36,11 @@ public class EmailPasswordActivity extends BaseActivity {
 
     @BindView(R.id.field_email) EditText mEmailField;
     @BindView(R.id.field_password) EditText mPasswordField;
+    @BindView(R.id.bool_remember_id) CheckBox mRememberId;
 
     private FirebaseAuth mAuth;
+    private boolean mRememberIdValue;
+    private PreferenceSaver preferenceSaver;
 
     public static Intent newInstance(Context context){
         Intent intent =  new Intent(context, EmailPasswordActivity.class);
@@ -47,8 +54,17 @@ public class EmailPasswordActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceSaver = new SharedPreferencesSaver(getApplicationContext());
+        mRememberIdValue = preferenceSaver.isRememberId();
         setContentView(R.layout.activity_emailpassword);
         ButterKnife.bind(this);
+
+        if (mRememberIdValue) {
+            Log.d(TAG, "testing setting text and checkbox");
+            mRememberId.setChecked(true);
+            mEmailField.setText(preferenceSaver.getSavedUsername());
+            mPasswordField.requestFocus();
+        }
 
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
@@ -81,6 +97,7 @@ public class EmailPasswordActivity extends BaseActivity {
                             Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
+                            preferenceSaver.storeCredentials(task.getResult().getUser().getEmail(), mRememberId.isChecked());
                             startActivity(MainActivity.newInstance(EmailPasswordActivity.this));
                             finish();
                         }
@@ -112,6 +129,7 @@ public class EmailPasswordActivity extends BaseActivity {
         return valid;
     }
 
+
     @OnClick(R.id.email_sign_in_button)
     public void onClick(View v) {
         switch (v.getId()) {
@@ -120,6 +138,14 @@ public class EmailPasswordActivity extends BaseActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+    //This will remove the stored email instantly when the checkbox is changed.
+    @OnClick(R.id.bool_remember_id)
+    public void onCheckedChanged(View v) {
+        if(!((CheckBox)v).isChecked()) {
+            preferenceSaver.storeCredentials("", mRememberId.isChecked());
         }
     }
 }
