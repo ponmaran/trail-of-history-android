@@ -9,8 +9,9 @@ In order to develop for Ranger (and the other Trail of History applications) you
 After creating your account you need to do the following:
 
 * Create a new Project in Firebase (the name doesn't matter but we use Trail of History)
-* Enable Auth
+* Enable Auth - Click Auth in the left column, and then click "Set up Sign-in Method"
+* Enable Email/Password under (Auth -> Sign-In Method) Note: You can’t create a user until you have a valid way for them to log in)
 * Create a new test user (Auth -> Add User from within the Firebase web console). The Ranger application does not currently allow users to be created from within the application itself.
-* Enable Remote Database   
-* Add an Android App to your Project.
-* Download the google-services.json file that is provided and put it in the root of the Ranger module directory.
+* Click on Database in the left hand column to Enable Remote Database   
+* Click on [Your Database Name] at the top of the left hand column and then click the green circle that says “Add Firebase to your Android app”. When asked for a package name, enter “org.charmeck.trailofhistory.ranger” and click “Add App”.
+* Download the google-services.json file that is provided and put it in the root of the Ranger module directory (i.e., trail-of-history-android\ranger).
