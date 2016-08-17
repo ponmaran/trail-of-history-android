@@ -21,6 +21,8 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
     private PointOfInterest pointOfInterest;
 
     @BindView(R.id.nameField) TextView nameField;
+    @BindView(R.id.locationField)
+    TextView locationField;
 
     public static Intent newInstance(Context context, PointOfInterest pointOfInterest){
         Intent intent =  new Intent(context, DetailPointOfInterestActivity.class);
@@ -72,5 +74,6 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
     private void setPointOfInterest(PointOfInterest pointOfInterest){
         this.pointOfInterest = pointOfInterest;
         nameField.setText(pointOfInterest.getName());
+        locationField.setText(getString(R.string.location_format_string, pointOfInterest.getLatitude(), pointOfInterest.getLatitude()));
     }
 }
