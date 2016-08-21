@@ -15,3 +15,8 @@ After creating your account you need to do the following:
 * Click on Database in the left hand column to Enable Remote Database   
 * Click on [Your Database Name] at the top of the left hand column and then click the green circle that says “Add Firebase to your Android app”. When asked for a package name, enter “org.charmeck.trailofhistory.ranger” and click “Add App”.
 * Download the google-services.json file that is provided and put it in the root of the Ranger module directory (i.e., trail-of-history-android\ranger).
+
+
+Google Maps API
+* You will need to put your own Google Maps API key in the keys.xml file in order to use the mapping functionality.
+[Getting an API Key](https://developers.google.com/maps/documentation/android-api/signup)
