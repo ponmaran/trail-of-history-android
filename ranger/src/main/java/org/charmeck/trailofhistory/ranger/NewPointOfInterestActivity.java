@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,8 +22,11 @@ import butterknife.OnClick;
 public class NewPointOfInterestActivity extends AppCompatActivity {
 
     private static String KEY_POI = "pointOfInterest";
+    private static final int REQUEST_CODE_LOCATION = 1;
 
     @BindView(R.id.poiname) EditText nameField;
+    @BindView(R.id.poilocation)
+    EditText locationField;
 
     private PointOfInterest pointOfInterest;
 
@@ -53,18 +57,33 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
 
         PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
         if(poi != null){
-            setPointOfInterest(poi);
+            this.pointOfInterest = poi;
+            updateViews();
         }
     }
 
-    @OnClick(R.id.saveButton)
+    @OnClick({R.id.saveButton, R.id.locationButton})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.saveButton:
                 validateAndSave();
                 break;
+            case R.id.locationButton:
+                startActivityForResult(MapActivity.newInstance(this, pointOfInterest), REQUEST_CODE_LOCATION);
             default:
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_LOCATION && resultCode == RESULT_OK) {
+            if (pointOfInterest == null) {
+                pointOfInterest = new PointOfInterest();
+            }
+            pointOfInterest.setLatitude(data.getDoubleExtra(MapActivity.EXTRA_LATITUDE, 0));
+            pointOfInterest.setLongitude(data.getDoubleExtra(MapActivity.EXTRA_LONGITUDE, 0));
+            updateViews();
         }
     }
 
@@ -103,9 +122,9 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         return valid;
     }
 
-    private void setPointOfInterest(PointOfInterest pointOfInterest){
-        this.pointOfInterest = pointOfInterest;
+    private void updateViews(){
         nameField.setText(pointOfInterest.getName());
+        locationField.setText(String.format("%s, %s", pointOfInterest.getLatitude(), pointOfInterest.getLongitude()));
     }
 
 

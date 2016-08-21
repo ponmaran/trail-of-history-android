@@ -14,9 +14,12 @@
 
     <string name="action_sign_out">Sign Out</string>
     <string name="action_edit">Edit</string>
+    <string name="action_done">Done</string>
 
     <string name="hint_name">Name</string>
     <string name="save">Save</string>
+    <string name="location">Location</string>
+    <string name="location_format_string">%1$s, %2$s</string>
 
     <string name="error_required">Required.</string>
     <string name="remember_id_swtich">Remember Email</string>
