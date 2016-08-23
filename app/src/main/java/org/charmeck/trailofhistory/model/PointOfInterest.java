@@ -1,7 +1,5 @@
 package org.charmeck.trailofhistory.model;
 
-import java.util.List;
-
 /**
  * Created by Trey Robinson on 3/8/16.
  */
