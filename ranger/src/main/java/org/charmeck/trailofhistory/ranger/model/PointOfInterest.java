@@ -18,16 +18,18 @@ public class PointOfInterest implements Parcelable {
     private String description;
     private double latitude;
     private double longitude;
+    private String imageUrl;
 
     public PointOfInterest() {
 
     }
 
-    public PointOfInterest(String name, String description, double latitude, double longitude) {
+    public PointOfInterest(String name, String description, double latitude, double longitude, String imageUrl) {
         this.name = name;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.imageUrl = imageUrl;
     }
 
     public String getUid() {
@@ -70,6 +72,13 @@ public class PointOfInterest implements Parcelable {
         this.longitude = longitude;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     @Override
     public int describeContents() {
@@ -83,6 +92,7 @@ public class PointOfInterest implements Parcelable {
         dest.writeString(this.description);
         dest.writeDouble(this.latitude);
         dest.writeDouble(this.longitude);
+        dest.writeString(this.imageUrl);
     }
 
     protected PointOfInterest(Parcel in) {
@@ -91,6 +101,7 @@ public class PointOfInterest implements Parcelable {
         this.description = in.readString();
         this.latitude = in.readDouble();
         this.longitude = in.readDouble();
+        this.imageUrl = in.readString();
     }
 
     public static final Parcelable.Creator<PointOfInterest> CREATOR = new Parcelable.Creator<PointOfInterest>() {
@@ -113,7 +124,7 @@ public class PointOfInterest implements Parcelable {
         result.put("description", description);
         result.put("latitude", latitude);
         result.put("longitude", longitude);
-
+        result.put("imageUrl", imageUrl);
         return result;
     }
 }

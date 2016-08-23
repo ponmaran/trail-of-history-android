@@ -3,11 +3,11 @@ package org.charmeck.trailofhistory.ranger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +25,8 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_LOCATION = 1;
 
     @BindView(R.id.poiname) EditText nameField;
-    @BindView(R.id.poilocation)
-    EditText locationField;
+    @BindView(R.id.poilocation) EditText locationField;
+    @BindView(R.id.description) EditText descriptionField;
 
     private PointOfInterest pointOfInterest;
 
@@ -53,7 +53,11 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_point_of_interest);
         ButterKnife.bind(this);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+
+        if(actionBar != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
         if(poi != null){
@@ -98,6 +102,7 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
         }
 
         pointOfInterest.setName(nameField.getText().toString());
+        pointOfInterest.setDescription(descriptionField.getText().toString());
         pointOfInterest = PointOfInterestManager.getInstance().savePOI(pointOfInterest, new DatabaseReference.CompletionListener() {
 
             @Override
@@ -125,6 +130,7 @@ public class NewPointOfInterestActivity extends AppCompatActivity {
     private void updateViews(){
         nameField.setText(pointOfInterest.getName());
         locationField.setText(String.format("%s, %s", pointOfInterest.getLatitude(), pointOfInterest.getLongitude()));
+        descriptionField.setText(pointOfInterest.getDescription());
     }
 
 
