@@ -1,10 +1,14 @@
 package org.charmeck.trailofhistory.poi;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.charmeck.trailofhistory.R;
 import org.charmeck.trailofhistory.model.PointOfInterest;
@@ -13,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
 
 /**
  * Created by Trey Robinson on 3/8/16.
@@ -28,6 +33,8 @@ public class PointOfInterestAdapter
         TextView name;
         @BindView(R.id.poiDescription)
         TextView description;
+        @BindView(R.id.poiImage)
+        ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -53,9 +60,13 @@ public class PointOfInterestAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(pointOfInterestList.get(position).name);
+        PointOfInterest poi = pointOfInterestList.get(position);
+        holder.name.setText(poi.name);
         // TODO set calculated distance
 //        holder.description.setText(pointOfInterestList.get(position).description);
+        Context context = holder.image.getContext();
+        // TODO udpate blur params after getting correctly sized images in Firebase
+        Picasso.with(context).load(poi.imageUrl).transform(new BlurTransformation(context, 2, 2)).into(holder.image);
     }
 
     @Override
