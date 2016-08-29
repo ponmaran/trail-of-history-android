@@ -36,4 +36,6 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.2.0'
 }
 
+apply from: "${project.rootDir}/config/quality/quality.gradle"
+
 apply plugin: 'com.google.gms.google-services'
