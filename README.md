@@ -1,10 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/cltmobilemeetup/trail-of-history-android.png?label=ready&title=Ready)](https://waffle.io/cltmobilemeetup/trail-of-history-android)
 # trail-of-history-android
 
-[![Stories in Ready](https://badge.waffle.io/cltmobilemeetup/trail-of-history-android.png?label=ready&title=Ready)](https://waffle.io/cltmobilemeetup/trail-of-history-android)
-# trail-of-history-android
-
-
 This application is a group project organized by the [Charlotte Android Meetup](https://www.meetup.com/Charlotte-Android-Developers/) for the [Trail of History](http://charmeck.org/mecklenburg/county/ParkandRec/TrailOfHistory/Pages/default.aspx).
 
 This is a community project distributed over many months. Talks are given monthly about various technical aspects of the application. 
