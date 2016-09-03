@@ -59,7 +59,7 @@ task pmd(type: Pmd, group: 'Verification', description: 'Inspect sourcecode for 
     ignoreFailures = false
     ruleSets = []
 
-    source 'src'
+    source fileTree('src/main/java')
     include '**/*.java'
     exclude '**/gen/**'
 

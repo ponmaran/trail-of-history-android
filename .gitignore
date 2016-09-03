@@ -10,7 +10,9 @@ bin/
 *.iws
 *.iml
 *.ipr
-.idea
+.idea/*
+# Include code style in git
+!.idea/codeStyleSettings.xml
 .gradle/
 out
 

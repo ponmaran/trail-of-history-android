@@ -7,31 +7,30 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class AuthenticationManager {
 
-    private static AuthenticationManager mInstance;
+  private static AuthenticationManager instance;
 
-    private FirebaseAuth mAuth;
+  private FirebaseAuth auth;
 
-    public static AuthenticationManager getInstance(){
+  public static AuthenticationManager getInstance() {
 
-        if(mInstance == null){
-            mInstance = new AuthenticationManager();
-        }
-
-        return mInstance;
+    if (instance == null) {
+      instance = new AuthenticationManager();
     }
 
-    private AuthenticationManager(){
-        mAuth = FirebaseAuth.getInstance();
-    }
+    return instance;
+  }
 
-    public void addAuthStateListener(FirebaseAuth.AuthStateListener listener){
-        mAuth.addAuthStateListener(listener);
-    }
+  private AuthenticationManager() {
+    auth = FirebaseAuth.getInstance();
+  }
 
-    public void removeAuthStateListener(FirebaseAuth.AuthStateListener listener){
-        if(mAuth != null){
-            mAuth.removeAuthStateListener(listener);
-        }
-    }
+  public void addAuthStateListener(FirebaseAuth.AuthStateListener listener) {
+    auth.addAuthStateListener(listener);
+  }
 
+  public void removeAuthStateListener(FirebaseAuth.AuthStateListener listener) {
+    if (auth != null) {
+      auth.removeAuthStateListener(listener);
+    }
+  }
 }
