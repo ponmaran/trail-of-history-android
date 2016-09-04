@@ -1,7 +1,6 @@
 package org.charmeck.trailofhistory;
 
 import android.app.Application;
-
 import timber.log.Timber;
 
 public class TrailOfHistoryApp extends Application {

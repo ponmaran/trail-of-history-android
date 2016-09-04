@@ -1,6 +1,5 @@
 package org.charmeck.trailofhistory.ranger;
 
-import android.content.Context;
 import android.os.Bundle;
 
 /**
@@ -8,12 +7,11 @@ import android.os.Bundle;
  */
 public interface PreferenceSaver {
 
+  void saveInstanceState(Bundle instanceState);
 
-    public void saveInstanceState(Bundle InstanceState);
+  String getSavedUsername();
 
-    public String getSavedUsername();
+  boolean isRememberId();
 
-    public boolean isRememberId();
-
-    public void storeCredentials(String email, boolean rememberId);
+  void storeCredentials(String email, boolean rememberId);
 }

@@ -5,28 +5,26 @@ import android.support.v7.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private ProgressDialog mProgressDialog;
+  private ProgressDialog progressDialog;
 
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
+  public void showProgressDialog() {
+    if (progressDialog == null) {
+      progressDialog = new ProgressDialog(this);
+      progressDialog.setMessage(getString(R.string.loading));
+      progressDialog.setIndeterminate(true);
     }
 
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
+    progressDialog.show();
+  }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        hideProgressDialog();
+  public void hideProgressDialog() {
+    if (progressDialog != null && progressDialog.isShowing()) {
+      progressDialog.dismiss();
     }
+  }
 
+  @Override public void onStop() {
+    super.onStop();
+    hideProgressDialog();
+  }
 }

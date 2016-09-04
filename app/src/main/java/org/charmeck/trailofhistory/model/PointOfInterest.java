@@ -5,11 +5,10 @@ package org.charmeck.trailofhistory.model;
  */
 public class PointOfInterest {
 
-    public String uid;
-    public String name;
-    public String description;
-    public double latitude;
-    public double longitude;
-    public String imageUrl;
-
+  public String uid;
+  public String name;
+  public String description;
+  public double latitude;
+  public double longitude;
+  public String imageUrl;
 }

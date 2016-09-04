@@ -53,4 +53,6 @@ dependencies {
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 }
 
+apply from: "${project.rootDir}/config/quality/quality.gradle"
+
 apply plugin: 'com.google.gms.google-services'

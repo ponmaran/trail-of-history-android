@@ -2,9 +2,7 @@ package org.charmeck.trailofhistory.ranger.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.google.firebase.database.Exclude;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,118 +11,115 @@ import java.util.Map;
  */
 public class PointOfInterest implements Parcelable {
 
-    private String uid;
-    private String name;
-    private String description;
-    private double latitude;
-    private double longitude;
-    private String imageUrl;
+  private String uid;
+  private String name;
+  private String description;
+  private double latitude;
+  private double longitude;
+  private String imageUrl;
 
-    public PointOfInterest() {
+  public PointOfInterest() {
 
-    }
+  }
 
-    public PointOfInterest(String name, String description, double latitude, double longitude, String imageUrl) {
-        this.name = name;
-        this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.imageUrl = imageUrl;
-    }
+  public PointOfInterest(String name, String description, double latitude, double longitude,
+      String imageUrl) {
+    this.name = name;
+    this.description = description;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.imageUrl = imageUrl;
+  }
 
-    public String getUid() {
-        return uid;
-    }
+  public String getUid() {
+    return uid;
+  }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+  public void setUid(String uid) {
+    this.uid = uid;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public double getLatitude() {
-        return latitude;
-    }
+  public double getLatitude() {
+    return latitude;
+  }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
+  public void setLatitude(double latitude) {
+    this.latitude = latitude;
+  }
 
-    public double getLongitude() {
-        return longitude;
-    }
+  public double getLongitude() {
+    return longitude;
+  }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
+  public void setLongitude(double longitude) {
+    this.longitude = longitude;
+  }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+  public String getImageUrl() {
+    return imageUrl;
+  }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+  @Override public int describeContents() {
+    return 0;
+  }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.uid);
-        dest.writeString(this.name);
-        dest.writeString(this.description);
-        dest.writeDouble(this.latitude);
-        dest.writeDouble(this.longitude);
-        dest.writeString(this.imageUrl);
-    }
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(this.uid);
+    dest.writeString(this.name);
+    dest.writeString(this.description);
+    dest.writeDouble(this.latitude);
+    dest.writeDouble(this.longitude);
+    dest.writeString(this.imageUrl);
+  }
 
-    protected PointOfInterest(Parcel in) {
-        this.uid = in.readString();
-        this.name = in.readString();
-        this.description = in.readString();
-        this.latitude = in.readDouble();
-        this.longitude = in.readDouble();
-        this.imageUrl = in.readString();
-    }
+  protected PointOfInterest(Parcel in) {
+    this.uid = in.readString();
+    this.name = in.readString();
+    this.description = in.readString();
+    this.latitude = in.readDouble();
+    this.longitude = in.readDouble();
+    this.imageUrl = in.readString();
+  }
 
-    public static final Parcelable.Creator<PointOfInterest> CREATOR = new Parcelable.Creator<PointOfInterest>() {
-        @Override
-        public PointOfInterest createFromParcel(Parcel source) {
-            return new PointOfInterest(source);
+  public static final Parcelable.Creator<PointOfInterest> CREATOR =
+      new Parcelable.Creator<PointOfInterest>() {
+        @Override public PointOfInterest createFromParcel(Parcel source) {
+          return new PointOfInterest(source);
         }
 
-        @Override
-        public PointOfInterest[] newArray(int size) {
-            return new PointOfInterest[size];
+        @Override public PointOfInterest[] newArray(int size) {
+          return new PointOfInterest[size];
         }
-    };
+      };
 
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("uid", uid);
-        result.put("name", name);
-        result.put("description", description);
-        result.put("latitude", latitude);
-        result.put("longitude", longitude);
-        result.put("imageUrl", imageUrl);
-        return result;
-    }
+  @Exclude public Map<String, Object> toMap() {
+    HashMap<String, Object> result = new HashMap<>();
+    result.put("uid", uid);
+    result.put("name", name);
+    result.put("description", description);
+    result.put("latitude", latitude);
+    result.put("longitude", longitude);
+    result.put("imageUrl", imageUrl);
+    return result;
+  }
 }

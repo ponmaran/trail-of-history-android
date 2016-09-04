@@ -11,103 +11,93 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.dgreenhalgh.android.simpleitemdecoration.linear.DividerItemDecoration;
-import com.google.firebase.auth.FirebaseAuth;
-
-import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
-import org.charmeck.trailofhistory.ranger.adapter.PointOfInterestAdapter;
-import org.charmeck.trailofhistory.ranger.manager.PointOfInterestManager;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.dgreenhalgh.android.simpleitemdecoration.linear.DividerItemDecoration;
+import com.google.firebase.auth.FirebaseAuth;
+import java.util.List;
+import org.charmeck.trailofhistory.ranger.adapter.PointOfInterestAdapter;
+import org.charmeck.trailofhistory.ranger.manager.PointOfInterestManager;
+import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
 
 /**
  * Lists all points of interest currently on the trail of history
  */
-public class MainActivity extends AuthenticatedActivity implements PointOfInterestManager.PointOfInterestListCallback{
+public class MainActivity extends AuthenticatedActivity
+    implements PointOfInterestManager.PointOfInterestListCallback {
 
-    private static final String TAG = "MainActivity";
+  private static final String TAG = "MainActivity";
 
-    @BindView(R.id.poiList) RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private PointOfInterestAdapter mAdapter;
+  @BindView(R.id.poiList) RecyclerView recyclerView;
+  private RecyclerView.LayoutManager layoutManager;
+  private PointOfInterestAdapter adapter;
 
-    public static Intent newInstance(Context context){
-        return new Intent(context, MainActivity.class);
-    }
+  public static Intent newInstance(Context context) {
+    return new Intent(context, MainActivity.class);
+  }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
 
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+    layoutManager = new LinearLayoutManager(this);
+    recyclerView.setLayoutManager(layoutManager);
 
-        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.simple_divider);
+    Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.simple_divider);
 
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
-    }
+    recyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
+  }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+  @Override protected void onResume() {
+    super.onResume();
 
-        showProgressDialog();
-        PointOfInterestManager.getInstance().getPointsofInterest(this);
-    }
+    showProgressDialog();
+    PointOfInterestManager.getInstance().getPointsofInterest(this);
+  }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.main_menu, menu);
+    return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_sign_out:
+        signOut();
+
         return true;
+      default:
+        return super.onOptionsItemSelected(item);
     }
+  }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_sign_out:
-                signOut();
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+  @OnClick(R.id.fab) public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.fab:
+        createPOI();
+        break;
+      default:
+        break;
     }
+  }
 
-    @OnClick(R.id.fab)
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-                createPOI();
-                break;
-            default:
-                break;
-        }
+  private void signOut() {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    auth.signOut();
+  }
+
+  private void createPOI() {
+    startActivity(NewPointOfInterestActivity.newInstance(this));
+  }
+
+  @Override public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
+    hideProgressDialog();
+    if (pointOfInterestList != null) {
+      adapter = new PointOfInterestAdapter(pointOfInterestList);
+      recyclerView.setAdapter(adapter);
     }
-
-    private void signOut() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.signOut();
-    }
-
-    private void createPOI(){
-        startActivity(NewPointOfInterestActivity.newInstance(this));
-    }
-
-    @Override
-    public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
-        hideProgressDialog();
-        if(pointOfInterestList != null){
-            mAdapter = new PointOfInterestAdapter(pointOfInterestList);
-            mRecyclerView.setAdapter(mAdapter);
-        }
-
-    }
+  }
 }

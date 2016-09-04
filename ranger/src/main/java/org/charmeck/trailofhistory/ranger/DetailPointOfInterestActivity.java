@@ -8,73 +8,67 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
 
 public class DetailPointOfInterestActivity extends AppCompatActivity {
 
-    private static String KEY_POI = "pointOfInterest";
+  private static final String KEY_POI = "pointOfInterest";
 
-    private PointOfInterest pointOfInterest;
+  private PointOfInterest pointOfInterest;
 
-    @BindView(R.id.nameField) TextView nameField;
-    @BindView(R.id.locationField)
-    TextView locationField;
+  @BindView(R.id.nameField) TextView nameField;
+  @BindView(R.id.locationField) TextView locationField;
 
-    public static Intent newInstance(Context context, PointOfInterest pointOfInterest){
-        Intent intent =  new Intent(context, DetailPointOfInterestActivity.class);
-        intent.putExtra(KEY_POI, pointOfInterest);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Control Up/Back flow to main List
-        return intent;
+  public static Intent newInstance(Context context, PointOfInterest pointOfInterest) {
+    Intent intent = new Intent(context, DetailPointOfInterestActivity.class);
+    intent.putExtra(KEY_POI, pointOfInterest);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Control Up/Back flow to main List
+    return intent;
+  }
+
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_detail_point_of_interest);
+    ButterKnife.bind(this);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
+    if (poi != null) {
+      setPointOfInterest(poi);
     }
+  }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_point_of_interest);
-        ButterKnife.bind(this);
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.detail_menu, menu);
+    return true;
+  }
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_edit:
+        edit();
 
-        PointOfInterest poi = getIntent().getParcelableExtra(KEY_POI);
-        if(poi != null){
-            setPointOfInterest(poi);
-        }
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.detail_menu, menu);
         return true;
+      default:
+        return super.onOptionsItemSelected(item);
     }
+  }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_edit:
-                edit();
+  private void edit() {
+    if (pointOfInterest != null) {
 
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+      startActivity(NewPointOfInterestActivity.newInstance(this, pointOfInterest));
     }
+  }
 
-    private void edit(){
-        if(pointOfInterest != null){
-
-            startActivity(NewPointOfInterestActivity.newInstance(this, pointOfInterest));
-        }
-    }
-
-    private void setPointOfInterest(PointOfInterest pointOfInterest){
-        this.pointOfInterest = pointOfInterest;
-        nameField.setText(pointOfInterest.getName());
-        locationField.setText(getString(R.string.location_format_string, pointOfInterest.getLatitude(), pointOfInterest.getLatitude()));
-    }
+  private void setPointOfInterest(PointOfInterest pointOfInterest) {
+    this.pointOfInterest = pointOfInterest;
+    nameField.setText(pointOfInterest.getName());
+    locationField.setText(getString(R.string.location_format_string, pointOfInterest.getLatitude(),
+        pointOfInterest.getLatitude()));
+  }
 }
