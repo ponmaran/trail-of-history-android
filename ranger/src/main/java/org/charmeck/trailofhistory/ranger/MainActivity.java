@@ -17,7 +17,8 @@ import butterknife.OnClick;
 import com.dgreenhalgh.android.simpleitemdecoration.linear.DividerItemDecoration;
 import com.google.firebase.auth.FirebaseAuth;
 import java.util.List;
-import org.charmeck.trailofhistory.ranger.adapter.PointOfInterestAdapter;
+import org.charmeck.trailofhistory.core.ui.poi.list.POIClickHandler;
+import org.charmeck.trailofhistory.core.ui.poi.list.PointOfInterestAdapter;
 import org.charmeck.trailofhistory.ranger.manager.PointOfInterestManager;
 import org.charmeck.trailofhistory.core.model.PointOfInterest;
 
@@ -26,7 +27,7 @@ import org.charmeck.trailofhistory.core.model.PointOfInterest;
  * Lists all points of interest currently on the trail of history
  */
 public class MainActivity extends AuthenticatedActivity
-    implements PointOfInterestManager.PointOfInterestListCallback {
+    implements PointOfInterestManager.PointOfInterestListCallback, POIClickHandler {
 
   private static final String TAG = "MainActivity";
 
@@ -97,8 +98,12 @@ public class MainActivity extends AuthenticatedActivity
   @Override public void pointsOfInterestRetrieved(List<PointOfInterest> pointOfInterestList) {
     hideProgressDialog();
     if (pointOfInterestList != null) {
-      adapter = new PointOfInterestAdapter(pointOfInterestList);
+      adapter = new PointOfInterestAdapter(pointOfInterestList,this);
       recyclerView.setAdapter(adapter);
     }
+  }
+
+  @Override public void handlePOIClicked(PointOfInterest pointOfInterest) {
+      startActivity(DetailPointOfInterestActivity.newInstance(this, pointOfInterest));
   }
 }
