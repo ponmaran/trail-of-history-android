@@ -10,8 +10,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import java.util.List;
 import org.charmeck.trailofhistory.ranger.DetailPointOfInterestActivity;
+import org.charmeck.trailofhistory.core.model.PointOfInterest;
 import org.charmeck.trailofhistory.ranger.R;
-import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
 
 /**
  * Created by Trey Robinson on 7/10/16.

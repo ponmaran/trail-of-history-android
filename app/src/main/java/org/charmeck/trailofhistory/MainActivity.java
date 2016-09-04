@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-import org.charmeck.trailofhistory.model.PointOfInterest;
+import org.charmeck.trailofhistory.core.model.PointOfInterest;
 import org.charmeck.trailofhistory.poi.PointOfInterestAdapter;
 
 public class MainActivity extends AppCompatActivity {

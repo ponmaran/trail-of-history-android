@@ -19,7 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.List;
 import org.charmeck.trailofhistory.ranger.adapter.PointOfInterestAdapter;
 import org.charmeck.trailofhistory.ranger.manager.PointOfInterestManager;
-import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.core.model.PointOfInterest;
+
 
 /**
  * Lists all points of interest currently on the trail of history

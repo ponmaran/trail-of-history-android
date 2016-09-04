@@ -10,7 +10,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import org.charmeck.trailofhistory.ranger.model.PointOfInterest;
+import org.charmeck.trailofhistory.core.model.PointOfInterest;
+
 
 public class DetailPointOfInterestActivity extends AppCompatActivity {
 

@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import jp.wasabeef.picasso.transformations.BlurTransformation;
 import org.charmeck.trailofhistory.R;
-import org.charmeck.trailofhistory.model.PointOfInterest;
+import org.charmeck.trailofhistory.core.model.PointOfInterest;
 
 /**
  * Created by Trey Robinson on 3/8/16.
@@ -52,13 +52,13 @@ public class PointOfInterestAdapter
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     PointOfInterest poi = pointOfInterestList.get(position);
-    holder.name.setText(poi.name);
+    holder.name.setText(poi.getName());
     // TODO set calculated distance
     //        holder.description.setText(pointOfInterestList.get(position).description);
     Context context = holder.image.getContext();
     // TODO udpate blur params after getting correctly sized images in Firebase
     Picasso.with(context)
-        .load(poi.imageUrl)
+        .load(poi.getImageUrl())
         .transform(new BlurTransformation(context, 2, 2))
         .into(holder.image);
   }
