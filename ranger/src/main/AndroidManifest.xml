@@ -24,8 +24,7 @@
         <activity
             android:name="org.charmeck.trailofhistory.ranger.DetailPointOfInterestActivity"
             android:parentActivityName=".MainActivity"/>
-        <activity android:name="org.charmeck.trailofhistory.ranger.MapActivity"
-            android:parentActivityName=".NewPointOfInterestActivity"/>
+        <activity android:name="org.charmeck.trailofhistory.ranger.MapActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
