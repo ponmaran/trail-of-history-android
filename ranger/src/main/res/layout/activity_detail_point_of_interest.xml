@@ -15,9 +15,16 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/locationField"
+        android:id="@+id/descriptionField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameField"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/locationField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descriptionField"
         android:layout_marginTop="8dp" />
 </RelativeLayout>

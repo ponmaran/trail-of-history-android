@@ -53,6 +53,9 @@ public class MapActivity extends BaseActivity
     SupportMapFragment mapFragment =
         (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
     mapFragment.getMapAsync(this);
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,6 +77,9 @@ public class MapActivity extends BaseActivity
           Snackbar.make(rootView, "Please choose a location.", Snackbar.LENGTH_SHORT).show();
         }
         break;
+      case android.R.id.home:
+        // MapActivity has two possible parents so we should just return to the previous activity
+        finish();
       default:
         return super.onOptionsItemSelected(item);
     }
