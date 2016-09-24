@@ -73,7 +73,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterest
     this.clickHandler = clickHandler;
   }
 
-  public void addPointOfIntrest(PointOfInterest pointOfInterest) {
+  public void addPointOfInterest(PointOfInterest pointOfInterest) {
     pointOfInterestList.add(pointOfInterest);
   }
 

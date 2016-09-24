@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
           @Override public void onDataChange(DataSnapshot dataSnapshot) {
             for (DataSnapshot poiSnapshot : dataSnapshot.getChildren()) {
               PointOfInterest poi = poiSnapshot.getValue(PointOfInterest.class);
-              poiAdapter.addPointOfIntrest(poi);
+              poiAdapter.addPointOfInterest(poi);
             }
             poiAdapter.notifyDataSetChanged();
             progressDialog.dismiss();
