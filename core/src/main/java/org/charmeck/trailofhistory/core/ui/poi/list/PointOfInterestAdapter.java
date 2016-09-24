@@ -12,16 +12,15 @@ import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import jp.wasabeef.picasso.transformations.BlurTransformation;
+import org.charmeck.trailofhistory.core.R;
 import org.charmeck.trailofhistory.core.R2;
 import org.charmeck.trailofhistory.core.model.PointOfInterest;
-import org.charmeck.trailofhistory.core.R;
-
 
 /**
  * Created by Trey Robinson on 3/8/16.
  */
-public class PointOfInterestAdapter
-    extends RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder> implements POIClickHandler {
+public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder>
+    implements POIClickHandler {
 
   private List<PointOfInterest> pointOfInterestList;
   private POIClickHandler clickHandler;
@@ -35,7 +34,7 @@ public class PointOfInterestAdapter
     private PointOfInterest pointOfInterest;
     private POIClickHandler clickHandler;
 
-    public ViewHolder(View itemView){
+    public ViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
     }
@@ -62,14 +61,14 @@ public class PointOfInterestAdapter
         clickHandler.handlePOIClicked(pointOfInterest);
       }
     }
-
   }
 
   public PointOfInterestAdapter(List<PointOfInterest> pointOfInterestList) {
     this.pointOfInterestList = pointOfInterestList;
   }
 
-  public PointOfInterestAdapter(List<PointOfInterest> pointOfInterestList, POIClickHandler clickHandler) {
+  public PointOfInterestAdapter(List<PointOfInterest> pointOfInterestList,
+      POIClickHandler clickHandler) {
     this.pointOfInterestList = pointOfInterestList;
     this.clickHandler = clickHandler;
   }
@@ -90,15 +89,13 @@ public class PointOfInterestAdapter
     holder.bindPOI(poi);
   }
 
-
   @Override public int getItemCount() {
     return pointOfInterestList.size();
   }
 
   @Override public void handlePOIClicked(PointOfInterest pointOfInterest) {
-    if(clickHandler != null){
+    if (clickHandler != null) {
       clickHandler.handlePOIClicked(pointOfInterest);
     }
   }
-
 }

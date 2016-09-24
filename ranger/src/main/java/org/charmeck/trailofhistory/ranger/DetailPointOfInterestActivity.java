@@ -12,7 +12,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import org.charmeck.trailofhistory.core.model.PointOfInterest;
 
-
 public class DetailPointOfInterestActivity extends AppCompatActivity {
 
   private static final String KEY_POI = "pointOfInterest";

@@ -9,5 +9,4 @@ import org.charmeck.trailofhistory.core.model.PointOfInterest;
 public interface POIClickHandler {
 
   void handlePOIClicked(PointOfInterest pointOfInterest);
-
 }
