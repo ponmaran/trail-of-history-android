@@ -31,3 +31,6 @@ android:
     - 'google-gdk-license-.+'
 script:
   - ./build.sh
+
+notifications:
+  slack: cltmobilemeetup:eIKxudoK0MDC6hBw7zkhxByT
