@@ -21,4 +21,3 @@ if [ ! -f ./app/google-services.json ]; then
 fi
 
 ./gradlew check connectedAndroidTest
-

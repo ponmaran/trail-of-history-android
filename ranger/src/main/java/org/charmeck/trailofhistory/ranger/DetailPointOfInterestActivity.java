@@ -69,8 +69,9 @@ public class DetailPointOfInterestActivity extends AppCompatActivity {
   private void setPointOfInterest(PointOfInterest pointOfInterest) {
     this.pointOfInterest = pointOfInterest;
     nameField.setText(pointOfInterest.getName());
-    locationField.setText(getString(R.string.location_format_string, pointOfInterest.getLatitude(),
-        pointOfInterest.getLongitude()));
+    locationField.setText(
+        getString(R.string.location_format_string, Double.toString(pointOfInterest.getLatitude()),
+            Double.toString(pointOfInterest.getLongitude())));
     descriptionField.setText(pointOfInterest.getDescription());
   }
 }

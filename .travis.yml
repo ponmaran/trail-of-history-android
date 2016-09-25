@@ -34,3 +34,7 @@ script:
 
 notifications:
   slack: cltmobilemeetup:eIKxudoK0MDC6hBw7zkhxByT
+
+after_failure:
+  - cat /home/travis/build/cltmobilemeetup/trail-of-history-android/app/build/outputs/lint-results-debug.xml
+  - cat /home/travis/build/cltmobilemeetup/trail-of-history-android/ranger/build/outputs/lint-results-debug.xml
