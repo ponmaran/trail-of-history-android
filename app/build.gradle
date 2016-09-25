@@ -11,9 +11,17 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
+def isTravis = "true".equals(System.getenv("TRAVIS"))
+def preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
+
+    dexOptions {
+        // Skip pre-dexing when running on Travis CI or when disabled via -Dpre-dex=false.
+        preDexLibraries = preDexEnabled && !isTravis
+    }
 
     defaultConfig {
         applicationId "org.charmeck.trailofhistory"
