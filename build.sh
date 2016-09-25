@@ -20,4 +20,5 @@ if [ ! -f ./app/google-services.json ]; then
   cp ./app/mock-google-services.json ./app/google-services.json
 fi
 
-./gradlew check connectedAndroidTest -Dpre-dex=false
+./gradlew check -Dpre-dex=false
+./gradlew connectedAndroidTest -Dpre-dex=false
