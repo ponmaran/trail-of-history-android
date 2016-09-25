@@ -3,6 +3,8 @@
 # Exit on error
 set -e
 
+./gradlew check -Dpre-dex=false
+
 # Emulator Management: Create, Start and Wait
 echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
 emulator -avd test -no-audio -no-window &
@@ -20,5 +22,4 @@ if [ ! -f ./app/google-services.json ]; then
   cp ./app/mock-google-services.json ./app/google-services.json
 fi
 
-./gradlew check -Dpre-dex=false
 ./gradlew connectedAndroidTest -Dpre-dex=false
