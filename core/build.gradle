@@ -16,6 +16,10 @@ android {
   compileSdkVersion 24
   buildToolsVersion "24.0.2"
 
+  dexOptions {
+    preDexLibraries = Boolean.valueOf(System.getProperty("pre-dex", "true"))
+  }
+
   defaultConfig {
     minSdkVersion 19
     targetSdkVersion 24
