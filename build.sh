@@ -22,4 +22,4 @@ emulator -avd test -no-audio -no-window &
 android-wait-for-emulator
 adb shell input keyevent 82 &
 
-./gradlew connectedAndroidTest -Dpre-dex=false
+./gradlew connectedAndroidTest
