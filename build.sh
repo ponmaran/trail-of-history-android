@@ -17,9 +17,11 @@ fi
 ./gradlew check -Dpre-dex=false
 
 # Emulator Management: Create, Start and Wait
-echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-emulator -avd test -no-audio -no-window &
+echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+echo "Emulator creation finished"
+emulator -avd test -no-window &
 android-wait-for-emulator
 adb shell input keyevent 82 &
 
-./gradlew connectedAndroidTest
+./gradlew app:connectedAndroidTest
+./gradlew ranger:connectedAndroidTest
