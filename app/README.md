@@ -23,11 +23,11 @@ You will need to add your own Google Maps API key in order for the application t
 
 * The maps api key should be put in a string resources file named keys.xml 
 * The .gitignore file excludes keys.xml so your private key doesn't get uploaded to the git repo. Remember, it's supposed to be a private key :)
-* The Manifest is specifically looking for the string named "google_maps_key." Here is a drop in format example of keys.xml:
+* The Manifest is specifically looking for the string named "google_maps_api_key." Here is a drop in format example of keys.xml:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="google_maps_key">[YOUR_KEY_HERE]</string>
+  <string name="google_maps_api_key">[YOUR_KEY_HERE]</string>
 </resources>
 ```
 * For more instructions see here: [Getting an API Key](https://developers.google.com/maps/documentation/android-api/signup)
