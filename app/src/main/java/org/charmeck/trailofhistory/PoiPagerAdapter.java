@@ -13,6 +13,7 @@ import org.charmeck.trailofhistory.core.model.PointOfInterest;
  */
 public class PoiPagerAdapter extends FragmentStatePagerAdapter {
   private List<PointOfInterest> pois;
+  private static final float PAGE_WIDTH_PERCENT = 0.90f;
 
   public PoiPagerAdapter(FragmentManager fm, List<PointOfInterest> pois) {
     super(fm);
@@ -26,5 +27,9 @@ public class PoiPagerAdapter extends FragmentStatePagerAdapter {
 
   @Override public int getCount() {
     return pois.size();
+  }
+
+  @Override public float getPageWidth(int position) {
+    return PAGE_WIDTH_PERCENT;
   }
 }
