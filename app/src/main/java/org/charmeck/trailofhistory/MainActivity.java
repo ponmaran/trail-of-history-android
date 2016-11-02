@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
   PointOfInterestAdapter poiAdapter;
   private DatabaseReference databaseReference;
 
+
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -36,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
     recyclerView.setAdapter(poiAdapter);
 
     fetchStatues();
+
   }
+
+
 
   public void fetchStatues() {
     final ProgressDialog progressDialog =
@@ -57,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
           }
         });
   }
+
+
+/*  private void showDetail() {
+    if (pointOfInterest != null) {
+      startActivity(DetailActivity.newInstance(this, pointOfInterest));
+    }
+  }*/
+
+
 
   @Override protected void onDestroy() {
     super.onDestroy();
