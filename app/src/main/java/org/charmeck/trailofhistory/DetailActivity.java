@@ -45,17 +45,17 @@ public class DetailActivity extends AppCompatActivity {
     //collapsingToolbar.setContentScrimColor(
     //                       ContextCompat.getColor(this, R.color.colorPrimaryDark));
 
-    detail_textView.setText(dummyData());
+    //detail_textView.setText(dummyData());
 
     //PointOfInterest mPOI = (PointOfInterest) PointOfInterest.CREATOR.createFromParcel(poi);
-
-      }
+  }
 
 
   private String dummyData() {
 
     String lorem =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. "
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent "
+            + "libero. "
             + "Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. "
             + "Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. "
             + "Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad "
@@ -73,7 +73,8 @@ public class DetailActivity extends AppCompatActivity {
             + "Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, "
             + "a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. "
             + "Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam "
-            + "ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod "
+            + "ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. "
+            + "Integer euismod "
             + "lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis "
             + "sem, at interdum magna augue eget diam. \n"
             + "\n"
@@ -81,8 +82,10 @@ public class DetailActivity extends AppCompatActivity {
             + "Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi "
             + "sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. "
             + "Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt "
-            + "malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui "
-            + "quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. \n"
+            + "malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. "
+            + "Morbi in dui "
+            + "quis est pulvinar ullamcorper. Nulla facilisi. "
+            + "Integer lacinia sollicitudin massa. \n"
             + "\n"
             + "\n";
 
