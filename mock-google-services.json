@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "asdfasdf",
+    "firebase_url": "https://trail-of-history.firebaseio.com",
+    "project_id": "trail-of-history",
+    "storage_bucket": "trail-of-history.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:asdf:asdf:dafsadf",
+        "android_client_info": {
+          "package_name": "org.charmeck.trailofhistory.ranger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687315729621-asdfasdf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "asdfasdf"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:asdf:android:asdf",
+        "android_client_info": {
+          "package_name": "org.charmeck.trailofhistory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "asdfsadf-sdfgsdfgsdfgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "134sdfgsdfgsdfg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
