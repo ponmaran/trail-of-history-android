@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     tools:context="org.charmeck.trailofhistory.ranger.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <org.charmeck.trailofhistory.core.ui.poi.list.PointOfInterestRecyclerView
         android:id="@+id/poiList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent" />
     
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
