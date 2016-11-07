@@ -3,6 +3,7 @@
     <color name="colorPrimary">@color/Masala</color>
     <color name="colorPrimaryDark">@color/Tango</color>
     <color name="colorAccent">@color/Tango</color>
+    <color name="colorTitle">#FFFFFF</color>
     <color name="Masala">#3E3B34</color>
     <color name="Tango">#D16E3B</color>
 </resources>
