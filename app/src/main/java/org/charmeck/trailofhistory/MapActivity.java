@@ -90,15 +90,15 @@ public class MapActivity extends AppCompatActivity
     mapFragment.getMapAsync(this);
   }
 
-  @Override public boolean onCreateOptionsMenu(Menu menu){
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
     Timber.tag(TAG).d("onCreateOptionsMenu");
-    getMenuInflater().inflate(R.menu.menu_map_view,menu);
+    getMenuInflater().inflate(R.menu.menu_map_view, menu);
     return true;
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     Timber.tag(TAG).d("onOptionsItemSelected");
-    switch (item.getItemId()){
+    switch (item.getItemId()) {
       case R.id.option_view:
         onBackPressed();
         return true;
@@ -107,7 +107,7 @@ public class MapActivity extends AppCompatActivity
     return super.onOptionsItemSelected(item);
   }
 
-  @Override public void onBackPressed(){
+  @Override public void onBackPressed() {
     Timber.tag(TAG).d("onBackPressed");
     finish();
   }

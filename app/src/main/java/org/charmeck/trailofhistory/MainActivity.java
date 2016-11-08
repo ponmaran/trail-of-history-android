@@ -47,15 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
   }
 
-  @Override public boolean onCreateOptionsMenu(Menu menu){
-    getMenuInflater().inflate(R.menu.menu_list_view,menu);
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_list_view, menu);
     return true;
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()){
+    switch (item.getItemId()) {
       case R.id.option_view:
-        Intent listViewIntent = new Intent(getApplicationContext(),MapActivity.class);
+        Intent listViewIntent = new Intent(getApplicationContext(), MapActivity.class);
         startActivity(listViewIntent);
         return true;
     }
