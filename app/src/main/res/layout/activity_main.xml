@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context="org.charmeck.trailofhistory.MainActivity">
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/recyclerView"
+  <org.charmeck.trailofhistory.core.ui.poi.list.PointOfInterestRecyclerView
+      android:id="@+id/poiRecyclerView"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 

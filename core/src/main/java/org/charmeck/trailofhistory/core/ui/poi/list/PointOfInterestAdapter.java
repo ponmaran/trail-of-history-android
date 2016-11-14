@@ -19,7 +19,7 @@ import org.charmeck.trailofhistory.core.model.PointOfInterest;
 /**
  * Created by Trey Robinson on 3/8/16.
  */
-public class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder>
+class PointOfInterestAdapter extends RecyclerView.Adapter<PointOfInterestAdapter.ViewHolder>
     implements POIClickHandler {
 
   private List<PointOfInterest> pointOfInterestList;
