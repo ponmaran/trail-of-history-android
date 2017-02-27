@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,14 +16,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.List;
 import org.charmeck.trailofhistory.core.model.PointOfInterest;
-import org.charmeck.trailofhistory.core.ui.poi.list.PointOfInterestAdapter;
+import org.charmeck.trailofhistory.core.ui.poi.list.PointOfInterestRecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
   @BindView(R.id.toolbar) Toolbar toolbar;
-  @BindView(R.id.recyclerView) RecyclerView recyclerView;
-  PointOfInterestAdapter poiAdapter;
+  @BindView(R.id.poiRecyclerView) PointOfInterestRecyclerView recyclerView;
   private DatabaseReference databaseReference;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     databaseReference = FirebaseDatabase.getInstance().getReference();
-
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    poiAdapter = new PointOfInterestAdapter(new ArrayList<>());
-    recyclerView.setAdapter(poiAdapter);
 
     fetchStatues();
 
@@ -70,11 +64,12 @@ public class MainActivity extends AppCompatActivity {
     databaseReference.child("pointOfInterest")
         .addListenerForSingleValueEvent(new ValueEventListener() {
           @Override public void onDataChange(DataSnapshot dataSnapshot) {
+            List<PointOfInterest> pointsOfInterest = new ArrayList<>();
             for (DataSnapshot poiSnapshot : dataSnapshot.getChildren()) {
               PointOfInterest poi = poiSnapshot.getValue(PointOfInterest.class);
-              poiAdapter.addPointOfInterest(poi);
+              pointsOfInterest.add(poi);
             }
-            poiAdapter.notifyDataSetChanged();
+            recyclerView.addPointsOfInterest(pointsOfInterest);
             progressDialog.dismiss();
           }
 
